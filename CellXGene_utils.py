@@ -101,14 +101,49 @@ def cppt(df: pd.DataFrame, scaling_value:int=1e4) -> pd.DataFrame:
     return df
 
 
+def calc_filtered_average_expression_log_cptt_slack(df:pd.DataFrame, cptt_cutoff:int=3):
+    df = df.dropna(subset=['soma_data'])
+    df['cptt_1'] = df['cptt'] + 1  # add pseudo count of 1
+    df['log_cptt_1'] = np.log(df['cptt_1'])  # calculate log of cptt+1
+
+     # if column cptt is <= cutoff set it to zero
+    df['log_cptt_1_masked'] = np.where(df['log_cptt_1'] <= cptt_cutoff, 0, df['log_cptt_1'])
+
+    # get the non-zero cptt_1 values
+    non_zero_log_cptt_1 = df.loc[df['cptt_1'] > cptt_cutoff]
+
+    #calculate mean expression of non-zero log_cptt_1 values by feature name
+    mean_res = non_zero_log_cptt_1.groupby('feature_name')['log_cptt_1'].mean().reset_index()
+
+    # count the number of unique soma_dim_0 values
+    total_cells = df['soma_dim_0'].nunique()
+
+    # count the number of rows with cptt > 0 by feature_id
+    cell_expressed_df = (
+        df.loc[df['cptt_1'] > cptt_cutoff
+        ]
+        .groupby('feature_name')['soma_dim_0']
+        .count()
+        .reset_index(name='cell_expressed_count')
+    )
+
+    cell_expressed_df['total_cells'] = total_cells
+    cell_expressed_df['percentage_expressed'] = (
+        cell_expressed_df['cell_expressed_count'] / total_cells * 100
+    )
+
+    mean_exp_pct_exp_res = mean_res.merge(cell_expressed_df, on=['feature_name'])
+    return mean_exp_pct_exp_res
+
+
 def calc_filtered_average_expression_log_cptt_gpt(df:pd.DataFrame, cptt_cutoff:int=3):
     """
     Calculate the mean expression and percentage of cells expressed for each gene in a given dataframe
     """
     df = df.dropna(subset=['soma_data'])
-
     # if column cptt is <= cutoff set it to zero
     df['cptt'] = np.where(df['cptt'] < cptt_cutoff, 0, df['cptt'])
+
 
     df['cptt_1'] = df['cptt'] + 1  # add pseudo count of 1
     df['log_cptt_1'] = np.log(df['cptt_1'])  # calculate log of cptt+1
@@ -135,6 +170,7 @@ def calc_filtered_average_expression_log_cptt_gpt(df:pd.DataFrame, cptt_cutoff:i
     mean_exp_pct_exp_res = mean_res.merge(cell_expressed_df, on=['feature_name'])
 
     return mean_exp_pct_exp_res
+
 
 
 
@@ -510,7 +546,7 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
 
 
 
-def collect_census_queries(tissue:str, cell_type:str,  census_version:str= CENSUS_VERSION ) -> pd.DataFrame:
+def collect_census_queries(tissue:str, cell_type:str,  census_version:str= "latest" ) -> pd.DataFrame:
     """
     return concatenated dataframe of all cells returned for a given census query for tissus and cell_type
     
@@ -569,7 +605,7 @@ def collect_census_queries(tissue:str, cell_type:str,  census_version:str= CENSU
         ) as query:
             var_df = query.var().concat().to_pandas()
             obs_df = query.obs().concat().to_pandas()
-            obs_df.to_csv("/home/aindap/streamlitapps/CellXGene/Outputs/obs_df.csv", index=False)
+            obs_df.to_csv("~/streamlitapps/CellXGene/Outputs/obs_df.csv", index=False)
             #n_vars = query.n_vars
             n_obs = query.n_obs
         
@@ -613,7 +649,8 @@ def collect_census_queries_compute_mean_exp(curr_tissue, curr_cell_type):
     wrapper function for collect_census_queries and calc_filtered_average_expression_log_cptt
     """
     cptt_df=collect_census_queries(curr_tissue, curr_cell_type)
-    res=calc_filtered_average_expression_log_cptt_gpt(cptt_df)
+    #res=calc_filtered_average_expression_log_cptt_gpt(cptt_df)
+    res=calc_filtered_average_expression_log_cptt_slack(cptt_df)
     res['tissue']=curr_tissue
     res['cell_type']=curr_cell_type
 
