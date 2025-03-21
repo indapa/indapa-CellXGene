@@ -28,7 +28,6 @@ def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument("--tissue", help="tissue name")
     argparser.add_argument("--cell_type", help="cell type name")
-    argparser.add_argument("--output_path", help="output path to write results file", default="/Users/indapa/streamlitapps/CellXGene/Outputs")
     
    
     
@@ -37,11 +36,7 @@ def main():
     curr_tissue = args.tissue
     curr_cell_type = args.cell_type
 
-    parent_path = Path(args.output_path)
-    #check if parent_path exists
-    if parent_path.exists() is False:
-        sys.stderr.write("Error: parent_path does not exist")
-        sys.exit(1)
+   
 
     
 
@@ -55,16 +50,8 @@ def main():
     curr_tissue = curr_tissue.replace(" ", "_")
     
     fname=curr_tissue + "_" + curr_cell_type + ".csv"
-    date_foldername = YYYYMMMDD_date()
-
     
-        
-    output_path = parent_path / date_foldername
-    if output_path.exists() is False:
-        output_path.mkdir(parents=True)
-    
-    fout= output_path / fname
-    res.to_csv(fout, index=False)
+    res.to_csv(fname, index=False)
    
 
 

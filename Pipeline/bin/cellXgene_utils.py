@@ -25,9 +25,10 @@ import pyarrow as pa
 # ontology object
 ontology = owlready2.get_ontology(get_pinned_ontology_url(CL_BASIC_OWL_NAME))
 ontology.load()
-path=Path(__file__).parent.absolute()
+#path=Path(__file__).parent.absolute()
 # read in cell_type_ontology.json
-json_path=path/'cell_type_ontology.json'
+json_path='/opt/cell_type_ontology.json'
+#json_path = '/workspaces/indapa-CellXGene/cell_type_ontology.json'
 with open(json_path) as f:
     cell_type_ontology = json.load(f)
 
@@ -605,7 +606,7 @@ def collect_census_queries(tissue:str, cell_type:str,  census_version:str= "late
         ) as query:
             var_df = query.var().concat().to_pandas()
             obs_df = query.obs().concat().to_pandas()
-            obs_df.to_csv("~/streamlitapps/CellXGene/Outputs/obs_df.csv", index=False)
+            #obs_df.to_csv("/workspaces/indapa-CellXGene/Results/obs_df.csv", index=False)
             #n_vars = query.n_vars
             n_obs = query.n_obs
         
