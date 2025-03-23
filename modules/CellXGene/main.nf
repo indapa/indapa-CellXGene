@@ -23,7 +23,8 @@ process get_census_versions {
     publishDir "${params.output_dir}", mode: 'copy'
     
     //container 'community.wave.seqera.io/library/cellxgene-census_pip_tiledbsoma:602e534d4ed2a75c'
-    container 'public.ecr.aws/q3t0i2q1/indapa-cellxgene:latest'
+    container 'indapa/indapa-cellxgene:latest'
+
     
     input:
     val(census_version)
