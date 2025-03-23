@@ -6,10 +6,8 @@ include { get_census_versions; get_mean_expression } from './modules/CellXGene'
 
 workflow {
 
-    tissue = "skin of body"
-    cell_type = "macrophage"
 
-    get_mean_expression(tissue, cell_type)
-    //get_census_versions(params.census_version)
-  
+
+    get_mean_expression(params.tissue, params.cell_type)
+    
 }

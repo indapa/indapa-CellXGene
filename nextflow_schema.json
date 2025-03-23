@@ -12,6 +12,14 @@
     "census_version": {
       "type": "string",
       "default": "2023-12-15"
+    },
+    "tissue": {
+      "type": "string",
+      "default": "skin of body"
+    },
+    "cell_type": {
+      "type": "string",
+      "default": "macrophage"
     }
   }
 }
