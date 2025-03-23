@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
 # Copy your requirements.txt
 COPY requirements.txt cell_type_ontology.json /opt/
 
+
+
 # Install Python packages
 RUN pip install --upgrade pip && \
     pip install -r /opt/requirements.txt
