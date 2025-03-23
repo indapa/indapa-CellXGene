@@ -3,7 +3,7 @@ process get_mean_expression {
    
     publishDir "${params.output_dir}", mode: 'copy'
     
-    container 'public.ecr.aws/q3t0i2q1/indapa-cellxgene:latest'
+    container 'indapa/indapa-cellxgene:latest'
     
     input:
     val(tissue)
