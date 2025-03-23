@@ -12,9 +12,13 @@ process get_mean_expression {
     output:
     path('*.csv'), emit: tissue_cell_type_expression
 
+    ////python ${workflow.projectDir}/bin/cellXgene_census_mean_exp.py --tissue "${tissue}" --cell_type "${cell_type}"
     script:
     """
-    python ${workflow.projectDir}/bin/cellXgene_census_mean_exp.py --tissue "${tissue}" --cell_type "${cell_type}"
+    python /opt/bin/cellXgene_census_mean_exp.py --tissue "${tissue}" --cell_type "${cell_type}"
+    
+     
+  
     """
 }
 
