@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     git \
+    procps \
     libssl-dev \
     zlib1g-dev \
     libffi-dev \
