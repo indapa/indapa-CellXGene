@@ -27,5 +27,3 @@ RUN pip install --upgrade pip && \
 
 
 
-# Default command (starts bash shell)
-CMD ["bash"]
