@@ -9,5 +9,6 @@ workflow {
 
 
     get_mean_expression(params.tissue, params.cell_type)
+    get_census_versions(params.census_version)
     
 }
