@@ -38,6 +38,6 @@ process get_census_versions {
 
     script:
     """
-    python ${workflow.projectDir}/bin/get_census_versions.py --version ${census_version} 
+    python /opt/bin/get_census_versions.py --version ${census_version} 
     """
 }
