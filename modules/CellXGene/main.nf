@@ -6,8 +6,8 @@ process get_mean_expression {
     container 'indapa/indapa-cellxgene:latest'
     
     input:
-    val(tissue)
-    val(cell_type)
+    tuple val(tissue), val(cell_type)
+   
 
     output:
     path('*.csv'), emit: tissue_cell_type_expression
