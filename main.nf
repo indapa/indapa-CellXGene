@@ -1,4 +1,4 @@
-!/usr/local/bin/nextflow
+#!/usr/local/bin/nextflow
 
 nextflow.enable.dsl=2
 
