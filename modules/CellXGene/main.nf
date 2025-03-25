@@ -1,6 +1,7 @@
 
 process get_mean_expression {
    
+    tag "${cell_type}_${tissue}"
     publishDir "${params.output_dir}", mode: 'copy'
     
     container 'indapa/indapa-cellxgene:latest'
