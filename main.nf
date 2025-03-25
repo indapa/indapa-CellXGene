@@ -21,8 +21,8 @@ Channel.fromPath(params.samplesheet)
         assert row.tissue : "Missing 'tissue' column in samplesheet"
         assert row.cell_type : "Missing 'cell_type' column in samplesheet"
         
-        def tissue = file(row.tissue)
-        def cell_type = file(row.cell_type)
+        def tissue = row.tissue
+        def cell_type = row.cell_type
         
         return tuple(tissue, cell_type)
     }
