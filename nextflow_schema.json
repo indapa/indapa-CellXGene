@@ -13,13 +13,9 @@
       "type": "string",
       "default": "2023-12-15"
     },
-    "tissue": {
+    "samplesheet": {
       "type": "string",
-      "default": "skin of body"
-    },
-    "cell_type": {
-      "type": "string",
-      "default": "macrophage"
+      "default": "s3://cellxgene-samplesheets/samplesheet-test.csv"
     }
   }
 }
