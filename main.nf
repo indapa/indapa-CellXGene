@@ -1,33 +1,25 @@
-#!/usr/local/bin/nextflow
+!/usr/local/bin/nextflow
 
 nextflow.enable.dsl=2
 
 include { get_census_versions; get_mean_expression } from './modules/CellXGene'
 
-def required_params = [
-    'samplesheet', 
-    'census_version',
-    'output_dir'
-]
-
-for (param in required_params) {
-    if (!params[param]) {
-        error "Parameter '$param' is required!"
-    }
-}
+assert params.samplesheet : "Parameter 'samplesheet' is required!"
+assert params.census_version : "Parameter 'census_version' is required!"
+assert params.output_dir : "Parameter 'output_dir' is required!"
 
 def checkSamplesheet(samplesheet_file) {
-    if (!file(samplesheet_file).exists()) {
-        exit 1, "Samplesheet file not found: ${samplesheet_file}"
-    }
+    assert file(samplesheet_file).exists() : "Samplesheet file not found: ${samplesheet_file}"
     return file(samplesheet_file)
 }
 
-ss_status = checkSamplesheet(params.samplesheet)
+def samplesheet = checkSamplesheet(params.samplesheet)
 
 Channel.fromPath(params.samplesheet)
     .splitCsv(header: true)
     .map { row -> 
+        assert row.tissue : "Missing 'tissue' column in samplesheet"
+        assert row.cell_type : "Missing 'cell_type' column in samplesheet"
         
         def tissue = file(row.tissue)
         def cell_type = file(row.cell_type)
@@ -37,10 +29,6 @@ Channel.fromPath(params.samplesheet)
     .set { input_cellxgene_ch }
 
 workflow {
-
-
-
     get_mean_expression(input_cellxgene_ch)
-    //get_census_versions(params.census_version)
     
 }
