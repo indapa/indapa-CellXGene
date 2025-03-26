@@ -430,7 +430,7 @@ def collect_census_queries_gene(tissue:str, cell_type:str, feature_name:str, cen
         
             
             if n_obs == 0:
-                sys.stderr.write(f"no cells returned for {cell_type}")
+                sys.stderr.write(f"no cells returned for {cell_type} in {tissue}")
                 sys.exit(1)
 
             # query.X() returns an iterator of pyarrow.Table, with X data in COO format (only non-zero values).
