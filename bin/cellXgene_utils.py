@@ -431,7 +431,7 @@ def collect_census_queries_gene(tissue:str, cell_type:str, feature_name:str, cen
             
             if n_obs == 0:
                 sys.stderr.write(f"no cells returned for {cell_type} in {tissue}")
-                sys.exit(1)
+                sys.exit(0)
 
             # query.X() returns an iterator of pyarrow.Table, with X data in COO format (only non-zero values).
             # each arrow_tbl will have three columns:
@@ -514,7 +514,7 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
             
             if n_obs == 0:
                 sys.stderr.write(f"no cells returned for {cell_type}")
-                sys.exit(1)
+                sys.exit(0)
 
             # query.X() returns an iterator of pyarrow.Table, with X data in COO format (only non-zero values).
             # each arrow_tbl will have three columns:
@@ -613,7 +613,7 @@ def collect_census_queries(tissue:str, cell_type:str,  census_version:str= "late
             
             if n_obs == 0:
                 sys.stderr.write(f"no cells returned for {cell_type}")
-                sys.exit(1)
+                sys.exit(0)
 
             # query.X() returns an iterator of pyarrow.Table, with X data in COO format (only non-zero values).
             # each arrow_tbl will have three columns:
