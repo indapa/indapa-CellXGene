@@ -16,7 +16,7 @@ TOTAL_STREAMLIT_CELL_TYPES=95
 TOTAL_STREAMLIT_UNIQ_CELLS=4341697
 
 
-st.set_page_config(layout="wide", page_title="Xencor Single Cell Atlas", page_icon=":dna:", initial_sidebar_state="expanded")
+st.set_page_config(layout="wide", page_title="CellXGene Streamlit App", page_icon=":dna:", initial_sidebar_state="expanded")
 #set dark theme
 
 
@@ -285,10 +285,10 @@ def app_menu():
 
     with st.sidebar:
         selected = option_menu(
-                    menu_title = "Single Cell Expression App",
+                    menu_title = "CellXGene Expression App",
                     menu_icon= "map-fill",
                     options=['Main',
-                            'Single Cell Expression App',
+                            'CellXGene Expression App',
                              ],
                     icons=['book-fill',
                             'collection-fill',
@@ -304,15 +304,15 @@ def app_menu():
 def markdown_introduction():
 
     """
-    Brief introduction to Xencor Single Cell Atlas with helpful links
+    Brief introduction to CellXGene streamlit app
     """
     
     st.markdown("""
-                ### Single Cell Atlas 
-                The single cell RNAseq expression data of  **normal subjects** is ingested from [CZ Cell X Gene Discover](https://cellxgene.cziscience.com/) by using [CZ Cell X Gene Census API](https://chanzuckerberg.github.io/cellxgene-census//). 
+                ### CellXGene Streamlit App
+                The [Streamlit](https://streamlit.io/) displays single cell RNAseq expression data of  **normal subjects**  ingested from [CZ Cell X Gene Discover](https://cellxgene.cziscience.com/) by using [CZ Cell X Gene Census API](https://chanzuckerberg.github.io/cellxgene-census//). 
                 Users have the capability to search based on tissue type and gene symbol(s) and observe the top N cell types expressing the gene(s) of interest.
 
-                The data is processed using a [Nextflow pipeline](https://github.com/indapa/indapa-CellXGene/blob/master/main.nf) and can be deployed locally
+                The data is processed using a [Nextflow pipeline](https://github.com/indapa/indapa-CellXGene/blob/master/main.nf) and can be run locally
                 or on [Seqera Platform](https://seqera.io/). 
 
                 The analysis involves the inclusion of cells from assays measuring gene expression without the need for gene-length normalization.
@@ -324,14 +324,14 @@ def markdown_introduction():
                 This operation accommodates variations in granularity across datasets, offering a more robust measure of average expression for terms like "B cell" or "T cell" that may be represented by multiple cell types in different datasets.
 
 
-                I am in the process of adding more tissues and cell types, stay tuned for updates.
+                
                                 
                 Helpful links:
                 - [CZ Cell X Gene Discover](https://cellxgene.cziscience.com/)
                 - [CZ Cell X Gene Census API](https://chanzuckerberg.github.io/cellxgene-census//)
                 - [Cell Ontology](https://www.ebi.ac.uk/ols4/ontologies/cl)
                 - [Owlready2](https://owlready2.readthedocs.io/en/latest/intro.html) (ontology manipulation library used in CellXGene Census API)
-                - [CellXGene preprint](https://doi.org/10.1101/2023.10.30.563174)
+                - [CellXGene publication](https://doi.org/10.1093/nar/gkae1142)
                 - [CellXGene Data Processing](https://cellxgene.cziscience.com/docs/04__Analyze%20Public%20Data/4_2__Gene%20Expression%20Documentation/4_2_3__Gene%20Expression%20Data%20Processing)
 
 
@@ -410,8 +410,8 @@ def main():
     selected_app = app_menu()
     if selected_app == 'Main':
         markdown_introduction()
-    if selected_app == 'Single Cell Expression App':
-        st.markdown("""## Single Cell Expression App""")
+    if selected_app == 'CellXGene Expression App':
+        st.markdown("""## CellXGene Expression App""")
         cellXGene_mean_expression()
 
 
