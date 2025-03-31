@@ -47,7 +47,7 @@ def main():
     #replace any spaces in curr_tissue
     curr_tissue = curr_tissue.replace(" ", "_")
     
-    fname=curr_tissue + "_" + curr_cell_type + "unique_cell_count.csv"
+    fname=curr_tissue + "_" + curr_cell_type + "_unique_cell_count.csv"
     
     res.to_csv(fname, index=False)
    
