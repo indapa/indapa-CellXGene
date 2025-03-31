@@ -524,6 +524,7 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
            
             iteration=0
             soma_dim_0_ids_list=[]
+            soma_dim_0_ids_set=()
             
             for arrow_tbl in query.X("raw").tables():
                 sys.stderr.write(f"iterating expression count matrix for {cell_type} in {tissue} for iteration {iteration}\n")      
@@ -535,11 +536,28 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
                 #get unique number of soma_dim_0 values
 
                 soma_dim_0_ids=arrow_tbl_filtered_df['soma_dim_0'].unique().tolist()
-                soma_dim_0_ids_list.extend(soma_dim_0_ids)
+                soma_dim_0_ids_set.update(soma_dim_0_ids)
+                iteration+=1
+
                 
 
-            # drop duplicates
-            return soma_dim_0_ids_list
+            #count unique soma dim0 ids
+            unique_count=len(soma_dim_0_ids_set)
+            #replace any spaces in curr_cell_type
+            curr_cell_type = curr_cell_type.replace(" ", "_")
+    
+            #replace any spaces in curr_tissue
+            curr_tissue = curr_tissue.replace(" ", "_")
+    
+            fname=curr_tissue + "_" + curr_cell_type + ".csv"
+
+            #make a dataframe with curr_tissue, curr_cell_type, and unique_count
+            df = pd.DataFrame({'tissue': [curr_tissue], 'cell_type': [curr_cell_type], 'unique_count': [unique_count]})
+
+            #write the dataframe to a csv file
+            df.to_csv(fname, index=False)
+
+
         
         
 
