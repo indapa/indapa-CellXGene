@@ -466,7 +466,7 @@ def collect_census_queries_gene(tissue:str, cell_type:str, feature_name:str, cen
             return census_query_results_cppt
 
 
-def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CENSUS_VERSION ) -> list:
+def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CENSUS_VERSION ) -> pd.DataFrame:
 
     """
     Return the list of unique soma_dim_0 ids for a given cell type and tissue
@@ -523,7 +523,6 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
             #   3. soma_data -- corresponding to expression value for this gene and cell
            
             iteration=0
-            soma_dim_0_ids_list=[]
             soma_dim_0_ids_set=()
             
             for arrow_tbl in query.X("raw").tables():
@@ -543,19 +542,12 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
 
             #count unique soma dim0 ids
             unique_count=len(soma_dim_0_ids_set)
-            #replace any spaces in curr_cell_type
-            curr_cell_type = curr_cell_type.replace(" ", "_")
-    
-            #replace any spaces in curr_tissue
-            curr_tissue = curr_tissue.replace(" ", "_")
-    
-            fname=curr_tissue + "_" + curr_cell_type + ".csv"
+            
 
             #make a dataframe with curr_tissue, curr_cell_type, and unique_count
-            df = pd.DataFrame({'tissue': [curr_tissue], 'cell_type': [curr_cell_type], 'unique_count': [unique_count]})
-
-            #write the dataframe to a csv file
-            df.to_csv(fname, index=False)
+            df = pd.DataFrame({'tissue': [tissue], 'cell_type': [cell_type], 'unique_count': [unique_count]})
+            return df
+           
 
 
         
