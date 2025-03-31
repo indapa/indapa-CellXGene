@@ -523,7 +523,7 @@ def collect_census_total_cells(tissue:str, cell_type:str, census_version:str= CE
             #   3. soma_data -- corresponding to expression value for this gene and cell
            
             iteration=0
-            soma_dim_0_ids_set=()
+            soma_dim_0_ids_set=set()
             
             for arrow_tbl in query.X("raw").tables():
                 sys.stderr.write(f"iterating expression count matrix for {cell_type} in {tissue} for iteration {iteration}\n")      
