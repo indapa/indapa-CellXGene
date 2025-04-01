@@ -2,7 +2,7 @@
 
 nextflow.enable.dsl=2
 
-include { get_census_versions; get_mean_expression } from './modules/CellXGene'
+include { get_census_versions; get_mean_expression; count_unique_cells } from './modules/CellXGene'
 
 assert params.samplesheet : "Parameter 'samplesheet' is required!"
 assert params.census_version : "Parameter 'census_version' is required!"
@@ -29,6 +29,7 @@ Channel.fromPath(params.samplesheet)
     .set { input_cellxgene_ch }
 
 workflow {
-    get_mean_expression(input_cellxgene_ch)
+    //get_mean_expression(input_cellxgene_ch)
+    count_unique_cells(input_cellxgene_ch)
     
 }

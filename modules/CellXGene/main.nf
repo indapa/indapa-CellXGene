@@ -1,4 +1,25 @@
 
+process count_unique_cells {
+    tag "${tissue}_${cell_type}"
+    publishDir "${params.output_dir}", mode: 'copy'
+    
+    container 'indapa/indapa-cellxgene:latest'
+    
+    input:
+    tuple val(tissue), val(cell_type)
+   
+    output:
+    path('*.csv'), emit: tissue_cell_type_count
+
+    script:
+    """
+    python /opt/bin/cellXGene_census_count_unique_cells.py --tissue "${tissue}" --cell_type "${cell_type}"
+    
+     
+  
+    """
+}
+
 process get_mean_expression {
    
     tag "${cell_type}_${tissue}"
