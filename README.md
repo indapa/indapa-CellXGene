@@ -1,8 +1,14 @@
 This repo contains code query data from [CZ CellXGene Discover](https://cellxgene.cziscience.com/) by using [CZ CellXGene Census API](https://chanzuckerberg.github.io/cellxgene-census//) and [TileDB-SOMA API](https://github.com/single-cell-data/TileDB-SOMA). A Nextflow workflow is used to generate results from the CZ CellXGene Discover API and TileDB-SOMA API. 
 
-## Nextflow & Seqera Cloud
+## Running the pipeline
 
 The easiest way to run this pipeline is on Sequera Cloud. I personally recommend setting up [Batch Forge](https://docs.seqera.io/platform/25.1/compute-envs/aws-batch#tower-forge). Note, you need to have your own AWS account to set this up and you will be charged for the resources you use.
+
+Another option is is to run the pipieline locally. You can create a Github Codespace and once it's created you can run the pipeline using the following command:
+
+```
+nextflow run indapa-CellXGene/main.nf -c nextflow.config --output_dir <output_dir> --samplesheet <samplesheet>
+``` 
 
 ## Parameters required for pipeline
 
