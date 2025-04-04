@@ -4,7 +4,8 @@ This repo contains code to query data from [CZ CellXGene Discover](https://cellx
 
 The program [https://github.com/indapa/indapa-CellXGene/blob/master/bin/cellXgene_census_mean_exp.py](cellXgene_census_mean_exp.py) queries the CZ CellXGene Census API and retrieves the mean expression of genes in a given cell type. The output is a CSV file with the mean expression values for each gene in the specified cell type. It also calculates the number of unique cells retrieved for tissue,cell type pair. Results are written to a CSV file.
 
-![Workflow dag](./dag-20250404-18144393.html)
+![Workflow dag](./dag-20250404-18144393.png)
+
 
 ## Running the pipeline
 
