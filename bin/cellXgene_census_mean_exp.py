@@ -41,6 +41,8 @@ def main():
     
 
     res=collect_census_queries_compute_mean_exp(curr_tissue, curr_cell_type)
+    res=_rename_reformat_res_columns(res)
+
     
     
     #replace any spaces in curr_cell_type

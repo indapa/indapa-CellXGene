@@ -29,7 +29,7 @@ Channel.fromPath(params.samplesheet)
     .set { input_cellxgene_ch }
 
 workflow {
-    //get_mean_expression(input_cellxgene_ch)
+    get_mean_expression(input_cellxgene_ch)
     count_unique_cells(input_cellxgene_ch)
     
 }

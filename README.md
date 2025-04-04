@@ -1,4 +1,8 @@
-This repo contains code query data from [CZ CellXGene Discover](https://cellxgene.cziscience.com/) by using [CZ CellXGene Census API](https://chanzuckerberg.github.io/cellxgene-census//) and [TileDB-SOMA API](https://github.com/single-cell-data/TileDB-SOMA). A Nextflow workflow is used to generate results from the CZ CellXGene Discover API and TileDB-SOMA API. 
+This repo contains code to query data from [CZ CellXGene Discover](https://cellxgene.cziscience.com/) by using [CZ CellXGene Census API](https://chanzuckerberg.github.io/cellxgene-census//) and [TileDB-SOMA API](https://github.com/single-cell-data/TileDB-SOMA).  
+
+## Description of the pipeline
+
+The program [https://github.com/indapa/indapa-CellXGene/blob/master/bin/cellXgene_census_mean_exp.py](cellXgene_census_mean_exp.py) queries the CZ CellXGene Census API and retrieves the mean expression of genes in a given cell type. The output is a CSV file with the mean expression values for each gene in the specified cell type. It also calculates the number of unique cells retrieved for tissue,cell type pair. Results are written to a CSV file.
 
 ## Running the pipeline
 

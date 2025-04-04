@@ -13,7 +13,7 @@ import matplotlib.colors as colors
 
 TOTAL_STREAMLIT_TISSUES=2
 TOTAL_STREAMLIT_CELL_TYPES=95
-TOTAL_STREAMLIT_UNIQ_CELLS=4341697
+TOTAL_STREAMLIT_UNIQ_CELLS=2163717
 
 
 st.set_page_config(layout="wide", page_title="CellXGene Streamlit App", page_icon=":dna:", initial_sidebar_state="expanded")
@@ -309,11 +309,10 @@ def markdown_introduction():
     
     st.markdown("""
                 ### CellXGene Streamlit App
-                The [Streamlit](https://streamlit.io/) displays single cell RNAseq expression data of  **normal subjects**  ingested from [CZ Cell X Gene Discover](https://cellxgene.cziscience.com/) by using [CZ Cell X Gene Census API](https://chanzuckerberg.github.io/cellxgene-census//). 
+                This [Streamlit app](https://streamlit.io/) displays single cell RNAseq expression data of  **normal subjects**  ingested from [CZ Cell X Gene Discover](https://cellxgene.cziscience.com/) by using [CZ Cell X Gene Census API](https://chanzuckerberg.github.io/cellxgene-census//). 
                 Users have the capability to search based on tissue type and gene symbol(s) and observe the top N cell types expressing the gene(s) of interest.
 
-                The data is processed using a [Nextflow pipeline](https://github.com/indapa/indapa-CellXGene/blob/master/main.nf) and can be run locally
-                or on [Seqera Platform](https://seqera.io/). 
+                The data is processed using a [Nextflow pipeline](https://github.com/indapa/indapa-CellXGene/blob/master/main.nf) that can be run on [Seqera Platform](https://seqera.io/). 
 
                 The analysis involves the inclusion of cells from assays measuring gene expression without the need for gene-length normalization.
                 Read counts are normalized using a log transformation (ln([CPTT](https://www.youtube.com/watch?v=TTUrtCY2k-w)+1)). This normalization mitigates batch effects but does not completely
