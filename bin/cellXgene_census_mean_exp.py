@@ -1,5 +1,6 @@
 #!/bin/env python
-#create main function
+
+# calculates the mean expression and percentage of expressed cells for a given cell type and tissue
   
 
 import argparse
@@ -7,7 +8,7 @@ import pandas as pd
 from pathlib import Path
 from cellXgene_utils import collect_census_queries_compute_mean_exp
 from cellXgene_utils import YYYYMMMDD_date
-import sys
+
 
 def _rename_reformat_res_columns(res:pd.DataFrame) -> pd.DataFrame:
     """
