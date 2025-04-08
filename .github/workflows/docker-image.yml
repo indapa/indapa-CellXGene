@@ -3,7 +3,7 @@ name: Docker Hub CI
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'Dockerfile'
       - 'bin/**'
