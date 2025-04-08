@@ -26,7 +26,7 @@ def _rename_reformat_res_columns(res:pd.DataFrame) -> pd.DataFrame:
     return new_res
 
 def main():
-    argparser = argparse.ArgumentParser()
+    argparser = argparse.ArgumentParser(description="Calculates the mean expression and percentage of expressed cells for a given cell type and tissue from CellXGene Census")
     argparser.add_argument("--tissue", help="tissue name")
     argparser.add_argument("--cell_type", help="cell type name")
     
