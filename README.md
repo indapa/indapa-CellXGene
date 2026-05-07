@@ -24,7 +24,9 @@ uv run streamlit run cellXgene_streamlit.py
 
 Streamlit will print a local URL, typically `http://localhost:8501`.
 
-The app reads example CSV files from `ExampleData/`, which is already present in this repository. If the app starts but shows no data-driven options, verify that the folder contains `*_reformatted.csv` files.
+The app reads example CSV files from `ExampleData/`, which is already present in this repository. It also expects `HGNC_protein_coding_genes.txt` to be available in the repository root alongside `cellXgene_streamlit.py`.
+
+If `HGNC_protein_coding_genes.txt` is missing, the app can fail during startup with a `FileNotFoundError` before the UI renders, even if the `ExampleData/` folder is present. If the app starts but shows no data-driven options, verify that `ExampleData/` contains `*_reformatted.csv` files and that `HGNC_protein_coding_genes.txt` is present.
 
 For users keeping older workflows, `requirements.txt` remains in the repository for backward compatibility, but `pyproject.toml` is now the primary dependency definition for local uv-based development.
 
