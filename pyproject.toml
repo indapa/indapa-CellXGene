@@ -1,0 +1,30 @@
+[project]
+name = "indapa-cellxgene"
+version = "0.1.0"
+description = "Tools and Streamlit app for querying and visualizing CELLxGENE Census expression data."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "matplotlib>=3.8,<4",
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<3",
+    "polars>=1.8,<2",
+    "streamlit>=1.41,<2",
+    "streamlit-aggrid>=1.0.5,<2",
+    "streamlit-option-menu>=0.4.0,<1",
+]
+
+[project.optional-dependencies]
+pipeline = [
+    "cellxgene-census>=1.17,<2",
+    "owlready2>=0.46,<1",
+    "pyyaml>=6.0,<7",
+    "tiledbsoma>=1.15,<2",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
