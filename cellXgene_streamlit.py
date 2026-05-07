@@ -154,7 +154,7 @@ def _load_csv_directory_polars_lazy(tissue_list: list, gene_list: list, n_cell_t
     Load CSV files lazily using Polars, filter for tissue and gene, and return a LazyFrame
     that computes the top n cell types by percentage of cells expressing the gene.
     """
-    csv_dir = Path(__file__).parent / "ExpressionData" / "Reformatted"
+    csv_dir = Path(__file__).parent / "ExampleData" 
     n_obs_cutoff = 50
 
      # Define column data types explicitly
@@ -225,7 +225,7 @@ def _get_tissue_types() -> list:
     Load CSV files lazily using Polars, filter for tissue and gene, and return a LazyFrame
     that computes the top n cell types by percentage of cells expressing the gene.
     """
-    csv_dir = Path(__file__).parent / "ExpressionData" / "Reformatted"
+    csv_dir = Path(__file__).parent / "ExampleData" 
     
 
      # Define column data types explicitly
